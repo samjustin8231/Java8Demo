@@ -1,5 +1,5 @@
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * 类的实现描述：TODO 类实现描述
@@ -8,15 +8,48 @@ import java.util.Map;
  */
 public class ListDemo {
     public static void main(String[] agrs) {
-        method1();
+//        method1();
+//
+//        method2();
 
-        method2();
+//        method3();
+
+        List<String> lines = Arrays.asList("spring", "node", "mkyong");
+
+        List<String> result = lines.stream()                // 转化为一个流
+                .filter(line -> !"mkyong".equals(line))     // 排除 'mkyong'
+                .collect(Collectors.toList());              // 吧输出流收集回List中
+
+        result.forEach((s) -> System.out.println(s));                //输出 : spring, node
+    }
+
+    /**
+     * 传统的list过滤
+     */
+    private static void method3() {
+        List<String> lines = Arrays.asList("spring", "node", "mkyong");
+        List<String> result = getFilterOutput(lines, "mkyong");
+        for (String temp : result) {
+            System.out.println(temp);    //output : spring, node
+        }
+    }
+
+    private static List<String> getFilterOutput(List<String> lines, String filter) {
+        List<String> result = new ArrayList();
+        for (String line : lines) {
+            if (!"mkyong".equals(line)) { // we dont like mkyong
+                result.add(line);
+            }
+        }
+        return result;
     }
 
     /**
      * lambda表达式遍历map
      */
     private static void method2() {
+        System.out.println();
+
         Map<String, Integer> items = new HashMap();
         items.put("A", 10);
         items.put("B", 20);
@@ -40,6 +73,8 @@ public class ListDemo {
      * 传统的foreach遍历
      */
     private static void method1() {
+        System.out.println();
+
         Map<String, Integer> items = new HashMap();
         items.put("A", 10);
         items.put("B", 20);
