@@ -1,3 +1,5 @@
+import Model.Developer;
+
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
@@ -7,7 +9,7 @@ import java.util.List;
  *
  * @author sunyajun 2018/6/28 17:52
  */
-public class Main {
+public class Demo1 {
     public static void main(String[] args) {
 
         List<Developer> listDevs = getDevelopers();
@@ -27,15 +29,11 @@ public class Main {
     }
 
     private static List<Developer> getDevelopers() {
-
         List<Developer> result = new ArrayList<Developer>();
-
         result.add(new Developer("mkyong", new BigDecimal("70000"), 33));
         result.add(new Developer("alvin", new BigDecimal("80000"), 20));
         result.add(new Developer("jason", new BigDecimal("100000"), 10));
         result.add(new Developer("iris", new BigDecimal("170000"), 55));
-
         return result;
-
     }
 }

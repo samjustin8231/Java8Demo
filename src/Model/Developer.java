@@ -1,3 +1,5 @@
+package Model;
+
 import java.math.BigDecimal;
 import java.util.Objects;
 
@@ -59,7 +61,7 @@ public class Developer {
 
     @Override
     public String toString() {
-        return "Developer{" +
+        return "Model.Developer{" +
                 "name='" + name + '\'' +
                 ", age=" + age +
                 ", salary=" + salary +
