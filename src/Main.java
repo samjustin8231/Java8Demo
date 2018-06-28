@@ -20,10 +20,10 @@ public class Main {
         System.out.println("After Sort");
 
         //lambda 表达式!
-        listDevs.sort((Developer o1, Developer o2)->o1.getAge()-o2.getAge());
+        listDevs.sort((Developer o1, Developer o2) -> o1.getAge() - o2.getAge());
 
         //java 8 , lambda也可以打印List
-        listDevs.forEach((Developer)->System.out.println(Developer));
+        listDevs.forEach((Developer) -> System.out.println(Developer));
     }
 
     private static List<Developer> getDevelopers() {
