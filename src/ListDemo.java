@@ -14,11 +14,18 @@ public class ListDemo {
 
 //        method3();
 
+        method4();
+    }
+
+    /**
+     * stream.filter()过滤list；
+     */
+    private static void method4() {
         List<String> lines = Arrays.asList("spring", "node", "mkyong");
 
         List<String> result = lines.stream()                // 转化为一个流
                 .filter(line -> !"mkyong".equals(line))     // 排除 'mkyong'
-                .collect(Collectors.toList());              // 吧输出流收集回List中
+                .collect(Collectors.toList());              // 把输出流收集回List中
 
         result.forEach((s) -> System.out.println(s));                //输出 : spring, node
     }
