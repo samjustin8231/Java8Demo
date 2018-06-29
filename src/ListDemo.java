@@ -1,3 +1,5 @@
+import Model.Person;
+
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -14,7 +16,119 @@ public class ListDemo {
 
 //        method3();
 
-        method4();
+//        method4();
+
+//        method5();
+
+//        method6();
+
+//        method7();
+
+        method8();
+    }
+
+    /**
+     * map
+     */
+    private static void method8() {
+        List<Person> persons = Arrays.asList(
+                new Person("mkyong", 30),
+                new Person("jack", 20),
+                new Person("lawrence", 40)
+        );
+
+        String name = persons.stream()
+                .filter(x -> "jack".equals(x.getName()))
+                .map(Person::getName)                        //把流转化为String
+                .findAny()
+                .orElse("");
+
+        System.out.println("name : " + name);
+
+        List<String> collect = persons.stream()
+                .map(Person::getName)
+                .collect(Collectors.toList());
+
+        collect.forEach(System.out::println);
+    }
+
+    /**
+     * filter多重条件指定.
+     */
+    private static void method7() {
+        List<Person> persons = Arrays.asList(
+                new Person("mkyong", 30),
+                new Person("jack", 20),
+                new Person("lawrence", 40)
+        );
+
+        Person result1 = persons.stream()
+                .filter((p) -> "jack".equals(p.getName()) && 20 == p.getAge())
+                .findAny()
+                .orElse(null);
+
+        System.out.println("result 1 :" + result1);
+
+        //or like this
+        Person result2 = persons.stream()
+                .filter(p -> {
+                    if ("jack".equals(p.getName()) && 20 == p.getAge()) {
+                        return true;
+                    }
+                    return false;
+                }).findAny()
+                .orElse(null);
+
+        System.out.println("result 2 :" + result2);
+    }
+
+    /**
+     * stream.filter()， .findAny().orElse (null) 来返回指定的对象
+     */
+    private static void method6() {
+        List<Person> persons = Arrays.asList(
+                new Person("mkyong", 30),
+                new Person("jack", 20),
+                new Person("lawrence", 40)
+        );
+
+        Person result1 = persons.stream()                        // 转化为流
+                .filter(x -> "jack".equals(x.getName()))        // 只过滤出"jack"
+                .findAny()                                      // 如果找到了就返回
+                .orElse(null);                                  // 如果找不到就返回null
+
+        System.out.println(result1);
+
+        Person result2 = persons.stream()
+                .filter(x -> "ahmook".equals(x.getName()))
+                .findAny()
+                .orElse(null);
+
+        System.out.println(result2);
+    }
+
+    /**
+     * 传统的方式：通过name获取一个Person
+     */
+    private static void method5() {
+        List<Person> persons = Arrays.asList(
+                new Person("mkyong", 30),
+                new Person("jack", 20),
+                new Person("lawrence", 40)
+        );
+
+        Person result = getStudentByName(persons, "jack");
+        System.out.println(result);
+    }
+
+    private static Person getStudentByName(List<Person> persons, String name) {
+        Person result = null;
+        for (Person temp : persons) {
+            if (name.equals(temp.getName())) {
+                result = temp;
+            }
+        }
+        return result;
     }
 
     /**
